@@ -1,0 +1,2 @@
+Create an interface name polygon.
+-print the area and the perimeter using member methods and create objects.
