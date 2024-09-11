@@ -1,5 +1,5 @@
 package task2;
-
+import java.lang.Math;
 interface Polygon {
     void printArea();    
     void printPerimeter(); 
