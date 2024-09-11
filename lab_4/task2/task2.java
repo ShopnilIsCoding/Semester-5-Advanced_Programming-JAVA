@@ -1,29 +1,19 @@
 package task2;
 import java.lang.Math;
 interface Polygon {
-    void printArea();    
-    void printPerimeter(); 
+    void printArea(double a, double b ,double c);    
+    void printPerimeter(double a, double b ,double c); 
 }
 
 class triangle implements Polygon
 {
-    private double a;
-    private double b;
-    private double c;
-    
-    public triangle(double a, double b ,double c) {
-        this.a = a;
-        this.b = b;
-        this.c=c;
-    }
-
-    public void printPerimeter()
+    public void printPerimeter(double a, double b ,double c)
     {
         double perimeter = a+b+c;
         System.out.println("Perimeter of the triangle: " + perimeter);
     }
 
-    public void printArea()
+    public void printArea(double a, double b ,double c)
     {
         double s = (a + b + c) / 2;
         double area = Math.sqrt(s * (s - a) * (s - b) * (s - c));
@@ -34,9 +24,9 @@ class triangle implements Polygon
 
 public class task2 {
     public static void main(String[] args) {
-        Polygon t1 = new triangle(3, 4, 5);
-        t1.printPerimeter();
-        t1.printArea();
+        Polygon t1 = new triangle();
+        t1.printPerimeter(3,4,5);
+        t1.printArea(3,4,5);
     }
     
 }
