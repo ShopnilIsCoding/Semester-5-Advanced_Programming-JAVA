@@ -1,6 +1,11 @@
-//id : 22234103166
 class InsufficientFundsException extends Exception {
     public InsufficientFundsException(String message) {
+        super(message);
+    }
+}
+
+class NegativeAmountException extends Exception {
+    public NegativeAmountException(String message) {
         super(message);
     }
 }
@@ -8,11 +13,17 @@ class InsufficientFundsException extends Exception {
 class BankAccount {
     private double balance;
 
-    public void deposit(double amount) {
+    public void deposit(double amount) throws NegativeAmountException {
+        if (amount < 0) {
+            throw new NegativeAmountException("Cannot deposit a negative amount.");
+        }
         balance += amount;
     }
 
-    public void withdraw(double amount) throws InsufficientFundsException {
+    public void withdraw(double amount) throws InsufficientFundsException, NegativeAmountException {
+        if (amount < 0) {
+            throw new NegativeAmountException("Cannot withdraw a negative amount.");
+        }
         if (amount > balance) {
             throw new InsufficientFundsException("Insufficient funds for withdrawal.");
         }
@@ -27,11 +38,16 @@ class BankAccount {
 public class BankAccountTest {
     public static void main(String[] args) {
         BankAccount account = new BankAccount();
-        account.deposit(500);
 
         try {
-            account.withdraw(700);
-        } catch (InsufficientFundsException e) {
+            account.deposit(-400);
+        } catch (NegativeAmountException e) {
+            System.out.println(e.getMessage());
+        }
+
+        try {
+            account.withdraw(-500);
+        } catch (InsufficientFundsException | NegativeAmountException e) {
             System.out.println(e.getMessage());
         }
     }
