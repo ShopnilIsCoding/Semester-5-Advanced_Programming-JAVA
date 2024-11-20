@@ -84,5 +84,10 @@ public class ExceptionHandlingLabTasks {
 
 
 class SampleClass {
+    // public void nonExistentMethod()
+    // {
+    //     //empty
+
+    // };
     
 }
